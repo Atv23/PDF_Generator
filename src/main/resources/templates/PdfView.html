@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>PDF View</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+        }
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-bottom: 20px;
+        }
+        th, td {
+            border: 1px solid black;
+            text-align: center;
+            vertical-align: left;
+        }
+        .first-row{
+            padding: 20px 20px;
+            text-align: left;
+        }
+    </style>
+</head>
+<body>
+    <table class="invoice">
+        <tr>
+            <td colspan="2" class="first-row">Seller: <br>
+                <span th:text="${seller}"></span><br>
+                <span th:text="${sellerAddress}"></span><br>
+                <span th:text="|GSTIN: ${sellerGstin}|"></span>
+            </td>
+            <td colspan="2" class="first-row">Buyer:<br>
+                <span th:text="${buyer}" ></span><br>
+                <span th:text="${buyerAddress}" ></span><br>
+                <span th:text="|GSTIN: ${buyerGstin}|" ></span>
+            </td>
+        </tr>
+        <tr>
+            <th>Item</th>
+            <th>Quantity</th>
+            <th>Rate</th>
+            <th>Amount</th>
+        </tr>
+        <tr th:each="item : ${items}">
+            <td th:text="${item.name}"></td>
+            <td th:text="${item.quantity}"></td>
+            <td th:text="${item.rate}"></td>
+            <td th:text="${item.amount}"></td>
+        </tr>
+    </table>
+</body>
+</html>
